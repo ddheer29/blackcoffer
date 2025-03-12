@@ -11,7 +11,7 @@ const Header: FC = () => {
       style={{
         flexDirection: 'row',
         backgroundColor: 'rgb(28,51,66)',
-        height: '40%',
+        height: 130,
         width: '100%',
         paddingTop: 68,
         paddingHorizontal: 16
