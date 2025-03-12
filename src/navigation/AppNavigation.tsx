@@ -40,7 +40,7 @@ const TabNavigator = () => {
             <FontAwesome
               name={iconName}
               size={customizeSize}
-              color={focused ? '#121212' : 'gray'}
+              color={focused ? '#12121' : '#7C7C7C'}
             />
           );
         },

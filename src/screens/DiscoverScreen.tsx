@@ -130,7 +130,7 @@ const DiscoverScreen: FC = () => {
 
   return (
     <View>
-      <Header />
+      <Header screenno={1} />
       <View>
         <FlatList
           data={data}
