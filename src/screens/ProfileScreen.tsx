@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { FC, useState } from 'react'
 import Header from '../components/Header'
 import Ionicons from "react-native-vector-icons/Ionicons"
@@ -6,102 +6,89 @@ import { RFValue } from 'react-native-responsive-fontsize'
 
 const ProfileScreen: FC = () => {
   const [name, setName] = useState<string>("");
-  const [gender, setgender] = useState<string>("");
-  const [location, setlocation] = useState<string>("");
-  const [profession, setprofession] = useState<string>("");
-  const [bio, setbio] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [profession, setProfession] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
+
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <Header />
-      <ScrollView style={{ flexGrow: 1 }}>
-        <View>
-          <Image
-            source={{ uri: "https://i.ytimg.com/vi_webp/gWw23EYM9VM/maxresdefault.webp" }}
-            style={{ width: '100%', height: 200, }}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              width: 50,
-              height: 50,
-              backgroundColor: '#F5F5F5',
-              alignItems: "center",
-              justifyContent: 'center',
-              borderRadius: 100,
-              bottom: -18,
-              right: 30,
-            }}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1, backgroundColor: "#fff" }}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{ flex: 1 }}>
+          <Header />
+          <ScrollView
+            style={{ flexGrow: 1 }}
+            keyboardShouldPersistTaps="handled"
           >
-            <Ionicons
-              name="camera-outline"
-              size={RFValue(22)}
-              color={"#121212"}
-            />
-          </View>
+            <View>
+              <Image
+                source={{ uri: "https://i.ytimg.com/vi_webp/gWw23EYM9VM/maxresdefault.webp" }}
+                style={{ width: '100%', height: 200 }}
+              />
+              <View style={styles.cameraIcon}>
+                <Ionicons name="camera-outline" size={RFValue(22)} color={"#121212"} />
+              </View>
+            </View>
+            <View style={styles.formContainer}>
+              <InputField label="Name" value={name} onChangeText={setName} placeholder="Enter your Full Name" />
+              <InputField label="Gender" value={gender} onChangeText={setGender} placeholder="Enter your Gender" />
+              <InputField label="Location" value={location} onChangeText={setLocation} placeholder="Enter your Location" />
+              <InputField label="Profession" value={profession} onChangeText={setProfession} placeholder="Enter your Profession" />
+              <InputField label="Bio" value={bio} onChangeText={setBio} placeholder="Enter your bio" multiline={true} height={100} />
+            </View>
+          </ScrollView>
         </View>
-        <View style={{ flex: 1, paddingHorizontal: 16, paddingVertical: 12 }}>
-          <View>
-            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Name</Text>
-            <TextInput
-              value={name}
-              onChangeText={setName}
-              placeholder='Enter you Full Name'
-              placeholderTextColor={'#7C7C7C'}
-              cursorColor={"rgb(28,51,66)"}
-              style={{ backgroundColor: '#DCDCDC', width: '100%', padding: 12, height: 40, borderRadius: 8, }}
-            />
-          </View>
-          <View>
-            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Gender</Text>
-            <TextInput
-              value={gender}
-              onChangeText={setgender}
-              placeholder='Enter you Gender'
-              placeholderTextColor={'#7C7C7C'}
-              cursorColor={"rgb(28,51,66)"}
-              style={{ backgroundColor: '#DCDCDC', width: '100%', padding: 12, height: 40, borderRadius: 8, }}
-            />
-          </View>
-          <View>
-            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Location</Text>
-            <TextInput
-              value={location}
-              onChangeText={setlocation}
-              placeholder='Enter you Location'
-              placeholderTextColor={'#7C7C7C'}
-              cursorColor={"rgb(28,51,66)"}
-              style={{ backgroundColor: '#DCDCDC', width: '100%', padding: 12, height: 40, borderRadius: 8, }}
-            />
-          </View>
-          <View>
-            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Profession</Text>
-            <TextInput
-              value={profession}
-              onChangeText={setprofession}
-              placeholder='Enter you Profession'
-              placeholderTextColor={'#7C7C7C'}
-              cursorColor={"rgb(28,51,66)"}
-              style={{ backgroundColor: '#DCDCDC', width: '100%', padding: 12, height: 40, borderRadius: 8, }}
-            />
-          </View>
-          <View>
-            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Bio</Text>
-            <TextInput
-              value={bio}
-              onChangeText={setbio}
-              placeholder='Enter you bio'
-              placeholderTextColor={'#7C7C7C'}
-              cursorColor={"rgb(28,51,66)"}
-              multiline={true}
-              style={{ backgroundColor: '#DCDCDC', width: '100%', padding: 12, height: 100, borderRadius: 8, }}
-            />
-          </View>
-        </View>
-      </ScrollView>
-    </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   )
 }
 
+const InputField = ({ label, value, onChangeText, placeholder, multiline = false, height = 40 }) => (
+  <View>
+    <Text style={styles.label}>{label}</Text>
+    <TextInput
+      value={value}
+      onChangeText={onChangeText}
+      placeholder={placeholder}
+      placeholderTextColor="#7C7C7C"
+      cursorColor="rgb(28,51,66)"
+      multiline={multiline}
+      style={[styles.input, { height }]}
+      textAlignVertical={multiline ? "top" : "center"}
+    />
+  </View>
+);
+
 export default ProfileScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  cameraIcon: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    backgroundColor: '#F5F5F5',
+    alignItems: "center",
+    justifyContent: 'center',
+    borderRadius: 100,
+    bottom: -18,
+    right: 30,
+  },
+  formContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  label: {
+    paddingVertical: 8,
+    paddingTop: 14,
+  },
+  input: {
+    backgroundColor: '#DCDCDC',
+    width: '100%',
+    padding: 12,
+    borderRadius: 8,
+  }
+});

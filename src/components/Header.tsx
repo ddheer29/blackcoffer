@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { Platform, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { FC, useState } from 'react'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
@@ -14,7 +14,7 @@ const Header: FC = ({ screenno }) => {
         backgroundColor: 'rgb(28,51,66)',
         height: 130,
         width: '100%',
-        paddingTop: 68,
+        paddingTop: Platform.OS === "ios" ? 68 : 50,
         paddingHorizontal: 16
       }}>
       <View
@@ -30,7 +30,7 @@ const Header: FC = ({ screenno }) => {
             size={RFValue(20)}
             color={"#fff"}
           />
-          <View style={{ backgroundColor: '#fff', width: '80%', padding: 12, height: "60%", borderRadius: 8, }}>
+          <View style={{ backgroundColor: '#fff', width: '80%', paddingHorizontal: 8, height: 40, borderRadius: 8, }}>
             <TextInput
               value={searchQuery}
               onChangeText={setSearchQuery}
