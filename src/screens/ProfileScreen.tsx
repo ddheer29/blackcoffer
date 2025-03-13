@@ -41,7 +41,7 @@ const ProfileScreen: FC = () => {
         </View>
         <View style={{ flex: 1, paddingHorizontal: 16, paddingVertical: 12 }}>
           <View>
-            <Text style={{ paddingVertical: 8 }}>Name</Text>
+            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Name</Text>
             <TextInput
               value={name}
               onChangeText={setName}
@@ -52,7 +52,7 @@ const ProfileScreen: FC = () => {
             />
           </View>
           <View>
-            <Text style={{ paddingVertical: 8 }}>Gender</Text>
+            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Gender</Text>
             <TextInput
               value={gender}
               onChangeText={setgender}
@@ -63,7 +63,7 @@ const ProfileScreen: FC = () => {
             />
           </View>
           <View>
-            <Text style={{ paddingVertical: 8 }}>Location</Text>
+            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Location</Text>
             <TextInput
               value={location}
               onChangeText={setlocation}
@@ -74,7 +74,7 @@ const ProfileScreen: FC = () => {
             />
           </View>
           <View>
-            <Text style={{ paddingVertical: 8 }}>Profession</Text>
+            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Profession</Text>
             <TextInput
               value={profession}
               onChangeText={setprofession}
@@ -85,7 +85,7 @@ const ProfileScreen: FC = () => {
             />
           </View>
           <View>
-            <Text style={{ paddingVertical: 8 }}>Bio</Text>
+            <Text style={{ paddingVertical: 8, paddingTop: 14 }}>Bio</Text>
             <TextInput
               value={bio}
               onChangeText={setbio}

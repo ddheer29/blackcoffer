@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { RFValue } from 'react-native-responsive-fontsize';
-import FontAwesome from "react-native-vector-icons/FontAwesome"
+import Ionicons from "react-native-vector-icons/Ionicons"
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,14 +30,14 @@ const TabNavigator = () => {
         tabBarIcon: ({ focused }) => {
           let iconName;
           if (route.name === 'DiscoverScreen') {
-            iconName = 'compass';
+            iconName = 'compass-outline';
           } else if (route.name === 'ProfileScreen') {
-            iconName = 'user';
+            iconName = 'person';
           }
 
           const customizeSize = RFValue(20);
           return (
-            <FontAwesome
+            <Ionicons
               name={iconName}
               size={customizeSize}
               color={focused ? '#12121' : '#7C7C7C'}
